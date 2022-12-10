@@ -10,7 +10,7 @@ import scala.io.{BufferedSource, Source}
 import scala.util.Using
 
 object Day1Part1 extends AdventProblem:
-  override val day: Day = Day1
+  override val day: Day   = Day1
   override val part: Part = Part1
 
   private val sample =
@@ -29,20 +29,29 @@ object Day1Part1 extends AdventProblem:
       |
       |10000""".stripMargin
 
+//  private def inputSource: List[List[Int]] = {
+//    var elves: List[List[Int]] = List.empty
+//    var currentElf: List[Int]  = List.empty
+//    Using(Source.fromFile(Common.fileLocation(day, part))) { file =>
+//      for (line <- file.getLines()) {
+//        if (line.trim.isBlank) {
+//          elves = currentElf.reverse :: elves
+//          currentElf = List.empty
+//        } else {
+//          currentElf = line.toInt :: currentElf
+//        }
+//      }
+//    }
+//    elves.reverse
+//  }
+
   private def inputSource: List[List[Int]] = {
-    var elves: List[List[Int]] = List.empty
-    var currentElf: List[Int] = List.empty
-    Using(Source.fromFile(Common.fileLocation(day, part))) { file =>
-      for (line <- file.getLines()) {
-        if (line.trim.isBlank) {
-          elves = currentElf.reverse :: elves
-          currentElf = List.empty
-        } else {
-          currentElf = line.toInt :: currentElf
-        }
-      }
+    def innerTake(lst: List[String]): List[List[Int]] = {
+      val elf: List[String] = lst.takeWhile(_ != "")
+      elf.map(_.toInt) :: innerTake(lst.dropWhile(_ != ""))
     }
-    elves.reverse
+
+    innerTake(fileInput)
   }
 
   private def splitElves(str: String): List[String] =
@@ -69,7 +78,8 @@ object Day1Part1 extends AdventProblem:
     steps(lst)
 
   private def part2Process(part1List: List[(Int, Int)]) =
-    part1List.take(3)
+    part1List
+      .take(3)
       .map((a, _) => a)
       .sum
 
