@@ -18,6 +18,7 @@ enum Day(val dirName: String):
   case Day7 extends Day("day7")
   case Day8 extends Day("day8")
   case Day9 extends Day("day9")
+  case Day10 extends Day("day10")
 
 enum Part(val name: String):
   case Part1 extends Part("part1")
