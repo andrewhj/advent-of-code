@@ -1,8 +1,7 @@
 package net.higility.advent2022
 
-import net.higility.advent.common.AdventProblem
-import net.higility.advent.common.Day.Day5
-
+//import net.higility.advent.common.Day.Day5
+//
 //case class Box(box: Char)
 //
 //case class Stack(boxes: List[Box])
